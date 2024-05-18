@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="A.Tahoon">
+    <meta name="description" content="This Is My Portfolio"><!-- Edit -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>A.Tahoon</title>
+</head>
+<body>
+    <!-- Starter -->
+    <section class="section1 show starter" draggable="true">
+        <div class="toNextSection">
+            <div class="starter-header">
+                <!--<img src="img/header/default.svg" alt="" class="header">-->
+                <!-- Header Span
+                        <span class="starter-header-shape shape1"></span>
+                        <span class="starter-header-shape shape2"></span>
+                        <span class="starter-header-shape shape3"></span>
+                        -->
+            </div>
+            <div class="starter-footer">
+                <div class="starter-footer-datetime">
+                    <div class="starter-footer-datetime-time"></div>
+                    <div class="starter-footer-datetime-date"></div>
+                </div>
+                <div class="starter-footer-icons">
+                    <div class="starter-footer-icons-wifi">
+                        <i class="fa-solid fa-wifi"></i>
+                        <span class="wifi-status" id="wifiStatus"></span>
+                    </div>
+                    <div class="starter-footer-icons-battary"><i class="fa-solid fa-battery-three-quarters"></i></div>
+                    <div class="starter-footer-icons-datetime">
+                        <div class="starter-footer-icons-time"> <span>AM</span></div>
+                        <div class="starter-footer-icons-date"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const starterDiv = document.querySelector(".starter");
+            const toNextSec = document.querySelector(".toNextSection");
+            const starterWifiIcon = document.querySelector(".starter-footer-icons-wifi");
+            const wifiStatus = document.getElementById('wifiStatus');
+
+            starterWifiIcon.addEventListener("click", function () {
+                wifiStatus.textContent = `${navigator.onLine ? "Online" : "Offline"}`;
+                wifiStatus.style.color = wifiStatus.textContent == "Online" ? "lime" : "crimson";
+                wifiStatus.style.opacity = "1";
+                setTimeout(_ => { wifiStatus.style.opacity = "0" }, 1000)
+            });
+            // ------------------------
+            starterDiv.addEventListener("dblclick",function(){
+                this.style.top=`-${innerHeight}px`;
+                document.querySelector(".section2").style.top="0px";
+            });
+
+            // ------------------------
+            
+            const starterBigTime = document.querySelector(".starter-footer-datetime-time");
+            const starterBigDate = document.querySelector(".starter-footer-datetime-date");
+            const starterIconTime = document.querySelector(".starter-footer-icons-time");
+            const starterIconTimeAM_PM = document.querySelector(".starter-footer-icons-time span");
+            const starterIconDate = document.querySelector(".starter-footer-icons-date");
+            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const dateNow = new Date();
+            let month = months[dateNow.getMonth()];
+            let day = days[dateNow.getDay()];
+
+            function updateTime() {
+                const now = new Date();
+                const hours = now.getHours().toLocaleString();
+                const minutes = now.getMinutes().toLocaleString();
+                const am_pm =now.toLocaleTimeString().split(" ");
+                
+                // Format the string with leading zeroes
+                starterBigTime.textContent = starterIconTime.textContent = `${am_pm[1] == "PM" ?(hours.toString().padStart(2, '0')-12) : hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+                starterIconTime.textContent +=  ` ${am_pm[1]}`;
+                // Set a timeout for one minute
+                //setTimeout(updateTime, 60000);
+                
+                /* Date */
+                starterBigDate.textContent = `${day}, ${month} ${dateNow.getDate()}`;
+                starterIconDate.textContent = `${(dateNow.getMonth()) +1}/${dateNow.getDate()}/${dateNow.getFullYear()}`;
+            }
+            updateTime();
+            setInterval(() => {
+                updateTime();
+            }, 1000);
+
+
+
+            starterWifiIcon.addEventListener("mousemove", function () {
+                wifiStatus.style.opacity = "1"
+                wifiStatus.textContent = `${navigator.onLine ? "Online" : "Offline"}`;
+                wifiStatus.style.color = wifiStatus.textContent == "Online" ? "lime" : "crimson";
+                setTimeout(_=> {wifiStatus.style.opacity = "0"},1000)
+            });
+
+        </script>
+    </section>
+
+    <!-- SignIn Section -->
+    <section class="section2 hide sign">
+        <div class="return"><i class="fa-solid fa-arrow-left"></i></div>
+        <div class="sign-photo"><img src="img/avatar.png" alt="Photo"></div>
+        <div class="sign-username"><h2>The Farmer Programmer (A.Tahoon)</h2></div>
+        <form class="sign-form" action="index.html" method="get">
+            <div class="form-input-div">
+                <!--<input class="input-div-pass" type="password" name="password" id="inputpass">-->
+                    <input onblur="labelOut()" class="input-div-pass input-style" type="password" name="text" id="inputpass">
+                    <label for="input-1">Enter The Password:</label>
+                    <span class="border borderL"></span>
+                    <span class="showpass" id="showpass"><i class="fa-solid fa-eye" id="showpassicon"></i></span>
+                    <span class="help"></span>
+            </div>
+            <div class="sign-form-buttons">
+                <div class="button sign-form-buttons-user"><span>Sign In</span></div>
+                <div class="button sign-form-buttons-guest"><span>Enter As a Guest</span></div>
+            </div>
+        </form>
+        <script>
+            /* Sign In Section */
+                const inputPass = document.querySelector("#inputpass");
+                const showPassIcon = document.querySelector("#showpassicon");
+                const inputParent = document.querySelector(`.form-input-div`);
+                const hoverBorder = document.querySelector(".borderL");
+                showPassIcon.addEventListener("click", function () {
+                    if (this.classList.value == "fa-solid fa-eye") {
+                        this.classList.value = "fa-solid fa-eye-slash";
+                        inputPass.setAttribute("type", "text");
+                    } else {
+                        this.classList.value = "fa-solid fa-eye";
+                        inputPass.setAttribute("type", "password");
+                    }
+                })
+
+                inputPass.addEventListener("input", _ => {
+                    inputPass.value != "" ? inputParent.classList.add("has-data") : inputParent.classList.remove("has-data");
+                    hoverBorder.style.width = inputParent.classList.contains("has-data") ? "100%" : "0"
+                })
+                const sec2 = document.querySelector(".section2");
+                const returnBtn = document.querySelector(".section2 .return");
+                returnBtn.addEventListener("click", function () {
+                    sec2.style.top = `${innerHeight}px`;
+                    document.querySelector(".starter").style.top = "0px";
+                });
+
+        </script>
+    </section>
+    <!-- Main Section -->
+
+    <!-- ShutDown Section -->
+    <section class="section4 shutdown hide">
+        <h2 class="shutdown-message">Thank You For Listening</h2>
+        <div class="shutdown-spinner"></div>
+        <div class="shutdown-text">Shutting Down...</div>
+
+    </section>
+    <script src="js/main.js"></script>
+</body>
+</html>
