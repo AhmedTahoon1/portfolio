@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="A.Tahoon">
     <meta name="description" content="This Is My Portfolio"><!-- Edit -->
+    <!-- JS Files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+    <!-- CSS Files -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,8 +18,11 @@
 </head>
 <body>
     <!-- Starter -->
-    <section class="section1 show starter" draggable="true">
-        <div class="toNextSection">
+    <section id="starter" class="section1 show starter">
+        <a class="dblclick-area" href="#signdiv">
+            <span class="dblclick"><i class="fa-solid fa-check-double"></i>Double Click</span>
+        </a>
+        <div class="toNextSection" ><!-- href="http://127.0.0.1:5500/index.html#signdiv" -->
             <div class="starter-header">
                 <!--<img src="img/header/default.svg" alt="" class="header">-->
                 <!-- Header Span
@@ -24,145 +31,161 @@
                         <span class="starter-header-shape shape3"></span>
                         -->
             </div>
-            <div class="starter-footer">
+            <div class="starter-footer" id="starter">
                 <div class="starter-footer-datetime">
                     <div class="starter-footer-datetime-time"></div>
                     <div class="starter-footer-datetime-date"></div>
                 </div>
-                <div class="starter-footer-icons">
-                    <div class="starter-footer-icons-wifi">
+                <div class="footer-icons">
+                    <div class="footer-icons-wifi">
                         <i class="fa-solid fa-wifi"></i>
                         <span class="wifi-status" id="wifiStatus"></span>
                     </div>
-                    <div class="starter-footer-icons-battary"><i class="fa-solid fa-battery-three-quarters"></i></div>
-                    <div class="starter-footer-icons-datetime">
-                        <div class="starter-footer-icons-time"> <span>AM</span></div>
-                        <div class="starter-footer-icons-date"></div>
+                    <div class="footer-icons-battary"><i class="fa-solid fa-battery-three-quarters"></i></div>
+                    <div class="footer-icons-datetime">
+                        <div class="footer-icons-time"> <span>AM</span></div>
+                        <div class="footer-icons-date"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            const starterDiv = document.querySelector(".starter");
-            const toNextSec = document.querySelector(".toNextSection");
-            const starterWifiIcon = document.querySelector(".starter-footer-icons-wifi");
-            const wifiStatus = document.getElementById('wifiStatus');
-
-            starterWifiIcon.addEventListener("click", function () {
-                wifiStatus.textContent = `${navigator.onLine ? "Online" : "Offline"}`;
-                wifiStatus.style.color = wifiStatus.textContent == "Online" ? "lime" : "crimson";
-                wifiStatus.style.opacity = "1";
-                setTimeout(_ => { wifiStatus.style.opacity = "0" }, 1000)
-            });
-            // ------------------------
-            starterDiv.addEventListener("dblclick",function(){
-                this.style.top=`-${innerHeight}px`;
-                document.querySelector(".section2").style.top="0px";
-            });
-
-            // ------------------------
-            
-            const starterBigTime = document.querySelector(".starter-footer-datetime-time");
-            const starterBigDate = document.querySelector(".starter-footer-datetime-date");
-            const starterIconTime = document.querySelector(".starter-footer-icons-time");
-            const starterIconTimeAM_PM = document.querySelector(".starter-footer-icons-time span");
-            const starterIconDate = document.querySelector(".starter-footer-icons-date");
-            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            const dateNow = new Date();
-            let month = months[dateNow.getMonth()];
-            let day = days[dateNow.getDay()];
-
-            function updateTime() {
-                const now = new Date();
-                const hours = now.getHours().toLocaleString();
-                const minutes = now.getMinutes().toLocaleString();
-                const am_pm =now.toLocaleTimeString().split(" ");
-                
-                // Format the string with leading zeroes
-                starterBigTime.textContent = starterIconTime.textContent = `${am_pm[1] == "PM" ?(hours.toString().padStart(2, '0')-12) : hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-                starterIconTime.textContent +=  ` ${am_pm[1]}`;
-                // Set a timeout for one minute
-                //setTimeout(updateTime, 60000);
-                
-                /* Date */
-                starterBigDate.textContent = `${day}, ${month} ${dateNow.getDate()}`;
-                starterIconDate.textContent = `${(dateNow.getMonth()) +1}/${dateNow.getDate()}/${dateNow.getFullYear()}`;
-            }
-            updateTime();
-            setInterval(() => {
-                updateTime();
-            }, 1000);
-
-
-
-            starterWifiIcon.addEventListener("mousemove", function () {
-                wifiStatus.style.opacity = "1"
-                wifiStatus.textContent = `${navigator.onLine ? "Online" : "Offline"}`;
-                wifiStatus.style.color = wifiStatus.textContent == "Online" ? "lime" : "crimson";
-                setTimeout(_=> {wifiStatus.style.opacity = "0"},1000)
-            });
-
-        </script>
     </section>
 
     <!-- SignIn Section -->
-    <section class="section2 hide sign">
+    <section class="section2 hide sign" id="signdiv">
         <div class="return"><i class="fa-solid fa-arrow-left"></i></div>
         <div class="sign-photo"><img src="img/avatar.png" alt="Photo"></div>
         <div class="sign-username"><h2>The Farmer Programmer (A.Tahoon)</h2></div>
         <form class="sign-form" action="index.html" method="get">
             <div class="form-input-div">
                 <!--<input class="input-div-pass" type="password" name="password" id="inputpass">-->
-                    <input onblur="labelOut()" class="input-div-pass input-style" type="password" name="text" id="inputpass">
+                    <input class="input-div-pass input-style" type="password" name="password" id="inputpass" value="" />
                     <label for="input-1">Enter The Password:</label>
                     <span class="border borderL"></span>
                     <span class="showpass" id="showpass"><i class="fa-solid fa-eye" id="showpassicon"></i></span>
                     <span class="help"></span>
+                    <input type="hidden" name="hide" id="hide" />
+            </div>
+            <div class="validatediv" style="position: relative;font-size: 16px;">
+                <div style="color:#f5f5f5;position: absolute;" id="err"></div>
+                <div style="color:#f5f5f5;position: absolute;" id="wrongpass"></div>
             </div>
             <div class="sign-form-buttons">
                 <div class="button sign-form-buttons-user"><span>Sign In</span></div>
                 <div class="button sign-form-buttons-guest"><span>Enter As a Guest</span></div>
             </div>
         </form>
-        <script>
-            /* Sign In Section */
-                const inputPass = document.querySelector("#inputpass");
-                const showPassIcon = document.querySelector("#showpassicon");
-                const inputParent = document.querySelector(`.form-input-div`);
-                const hoverBorder = document.querySelector(".borderL");
-                showPassIcon.addEventListener("click", function () {
-                    if (this.classList.value == "fa-solid fa-eye") {
-                        this.classList.value = "fa-solid fa-eye-slash";
-                        inputPass.setAttribute("type", "text");
-                    } else {
-                        this.classList.value = "fa-solid fa-eye";
-                        inputPass.setAttribute("type", "password");
-                    }
-                })
-
-                inputPass.addEventListener("input", _ => {
-                    inputPass.value != "" ? inputParent.classList.add("has-data") : inputParent.classList.remove("has-data");
-                    hoverBorder.style.width = inputParent.classList.contains("has-data") ? "100%" : "0"
-                })
-                const sec2 = document.querySelector(".section2");
-                const returnBtn = document.querySelector(".section2 .return");
-                returnBtn.addEventListener("click", function () {
-                    sec2.style.top = `${innerHeight}px`;
-                    document.querySelector(".starter").style.top = "0px";
-                });
-
-        </script>
     </section>
     <!-- Main Section -->
-
+    <section class="section3 main hide" id="main">
+        <div class="folders-container">
+            <ul class="folders-list">
+                <li class="folder active" data-folder="about">
+                    <i class="fa-solid fa-folder-closed"></i>
+                    <span class="folder-name">About</span>
+                </li>
+                <li class="folder" data-folder="skills">
+                    <i class="fa-solid fa-folder-closed"></i>
+                    <span class="folder-name">Skills</span>
+                </li>
+                <li class="folder" data-folder="projects">
+                    <i class="fa-solid fa-folder-closed"></i>
+                    <span class="folder-name">Projects</span>
+                </li>
+                <li class="folder" data-folder="testimonial">
+                    <i class="fa-solid fa-folder-closed"></i>
+                    <span class="folder-name">Testimonials</span>
+                </li>
+                <li class="folder" data-folder="contact">
+                    <i class="fa-solid fa-folder-closed"></i>
+                    <span class="folder-name">Contact</span>
+                </li>
+            </ul>
+        </div>
+        <div class="folder-preview">
+            <div class="default-preview" data-prev="default">Default</div>
+            <div class="about-preview" data-prev="about">About</div>
+            <div class="skills-preview" data-prev="skills">Skills</div>
+            <div class="projects-preview" data-prev="projects">Projects</div>
+            <div class="testimonials-preview" data-prev="testimonial">Testimonials</div>
+            <div class="contact-preview" data-prev="contact">Contact Me</div>
+        </div>
+        <div class="taskbar">
+            <div class="win">
+                <div class="win-icon"><i class="fa-brands fa-windows"></i></div>
+                <ul class="win-list">
+                    <li><i class="fa-solid fa-user"></i><span>Personalize</span></li>
+                    <li><i class="fa-solid fa-gear"></i> <span>setting</span></li>
+                    <li class="shutdown-item"><i class="fa-solid fa-power-off"></i> <span>Shut Down</span></li>
+                </ul>
+            </div>
+            <div class="status">
+                <div class="footer-icons">
+                    <div class="footer-icons-wifi">
+                        <i class="fa-solid fa-wifi"></i>
+                        <span class="wifi-status" id="wifiStatus"></span>
+                    </div>
+                    <div class="footer-icons-battary"><i class="fa-solid fa-battery-three-quarters"></i></div>
+                    <div class="footer-icons-datetime">
+                        <div class="footer-icons-time"> <span></span></div>
+                        <div class="footer-icons-date"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- PopUp -->
+            <div class="taskbar-popup none">
+                <div class="overlay">
+                    <div class="popup-container">
+                        <h3>Are You Sure You Want to Shut Down?</h3>
+                        <div class="action">
+                            <a class="shutdown-yes" href="#shutdownsec">Yes</a>
+                            <a class="shutdown-no">No</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Folders & Files
+            <i class="fa-solid fa-folder"></i>
+            <i class="fa-solid fa-folder-closed"></i>
+            <i class="fa-solid fa-folder-open"></i>
+            <i class="fa-solid fa-file"></i>
+            <i class="fa-solid fa-folder-tree"></i>
+            <i class="fa-solid fa-file-pdf"></i>
+            <i class="fa-solid fa-file-image"></i>
+            <i class="fa-solid fa-image"></i>
+            <i class="fa-solid fa-file-video"></i>
+            <i class="fa-solid fa-circle-xmark"></i>
+            <i class="fa-solid fa-xmark"></i>
+        -->
+        <!-- taskBar
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-brands fa-windows"></i>
+        -->
+        <!-- Social
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-solid fa-envelope"></i>
+            <i class="fa-brands fa-github"></i>
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-telegram"></i>
+            <i class="fa-solid fa-location-dot"></i>
+            <i class="fa-solid fa-mobile"></i>
+            <i class="fa-solid fa-phone"></i>
+            <i class="fa-solid fa-paper-plane"></i>
+        -->
+    </section>
     <!-- ShutDown Section -->
-    <section class="section4 shutdown hide">
+    <section class="section4 shutdownsec hide" id="shutdownsec">
         <h2 class="shutdown-message">Thank You For Listening</h2>
         <div class="shutdown-spinner"></div>
         <div class="shutdown-text">Shutting Down...</div>
-
     </section>
+    <!-- Lock Screen -->
+    <section class="section5 lock hide" id="lock">
+        <div class="lock-icon"><a><i class="fa-solid fa-power-off"></i></a></div>
+    </section>
+
     <script src="js/main.js"></script>
 </body>
 </html>
