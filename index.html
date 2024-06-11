@@ -20,7 +20,7 @@
     <!-- Starter -->
     <section id="starter" class="section1 show starter">
         <a class="dblclick-area" href="#signdiv">
-            <span class="dblclick"><i class="fa-solid fa-check-double"></i>Double Click</span>
+            <span class="dblclick"><i class="fa-solid fa-check-double"></i>Just Click</span>
         </a>
         <div class="toNextSection" ><!-- href="http://127.0.0.1:5500/index.html#signdiv" -->
             <div class="starter-header">
@@ -80,36 +80,322 @@
     <section class="section3 main hide" id="main">
         <div class="folders-container">
             <ul class="folders-list">
-                <li class="folder active" data-folder="about">
+                <li class="folder" data-level="about">
                     <i class="fa-solid fa-folder-closed"></i>
                     <span class="folder-name">About</span>
                 </li>
-                <li class="folder" data-folder="skills">
+                <li class="folder" data-level="skills">
                     <i class="fa-solid fa-folder-closed"></i>
                     <span class="folder-name">Skills</span>
                 </li>
-                <li class="folder" data-folder="projects">
+                <li class="folder" data-level="projects">
                     <i class="fa-solid fa-folder-closed"></i>
                     <span class="folder-name">Projects</span>
                 </li>
-                <li class="folder" data-folder="testimonial">
+                <li class="folder" data-level="testimonial">
                     <i class="fa-solid fa-folder-closed"></i>
                     <span class="folder-name">Testimonials</span>
                 </li>
-                <li class="folder" data-folder="contact">
+                <li class="folder" data-level="contact">
                     <i class="fa-solid fa-folder-closed"></i>
                     <span class="folder-name">Contact</span>
                 </li>
             </ul>
         </div>
         <div class="folder-preview">
-            <div class="default-preview" data-prev="default">Default</div>
-            <div class="about-preview" data-prev="about">About</div>
-            <div class="skills-preview" data-prev="skills">Skills</div>
-            <div class="projects-preview" data-prev="projects">Projects</div>
-            <div class="testimonials-preview" data-prev="testimonial">Testimonials</div>
-            <div class="contact-preview" data-prev="contact">Contact Me</div>
-        </div>
+            <!--<div class="default-preview" id="default" data-prev="default">Default</div>
+            <div class="about-preview" data-prev="about">
+                <div class="window">
+                    <div class="header">
+                        <h3 class="window-name">About</h3>
+                        <div class="window-header-close-icon">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <div class="window-folders-files-level-1">
+
+                        </div>
+                        <div class="window-folders-files-level-2">
+                            
+                        </div>
+                        <div class="window-folders-files-level-3">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="windows skills-preview none" id="skills" data-prev="skills">
+                <div class="window-level window window-level-1 none">
+                    <div class="window-header">
+                        <h3 class="window-header-name">Skills</h3>
+                        <div class="window-header-close-icon">
+                            <i class="fa-solid fa-circle-xmark" id="close-1"></i>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <div class="window-folders-files-level-1">
+                            <ul class="folders-files-list folders-files-list-1">
+                                <li class="folder-file-list-item" data-level="skills-pdf">
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                    <span class="folder-file-list-item-name">Skills File</span>
+                                </li>
+                                <li class="folder-file-list-item" data-level="skills-file">
+                                    <i class="fa-solid fa-file"></i>
+                                    <span class="folder-file-list-item-name">Skills File 2</span>
+                                </li>
+                                <li class="folder-file-list-item" data-level="skills-pdf-d">
+                                    <i class="fa-solid fa-file"></i>
+                                    <span class="folder-file-list-item-name">Skills Folder 2</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--<div class="window-overlay window-overlay-1"></div>-->
+                </div>
+                <div class="window-level window-level-2">
+                    <div class="window skills-pdf none" id="skills-pdf">
+                        <div class="window-header">
+                            <h3 class="window-header-name">Skills PDF</h3>
+                            <div class="window-header-close-icon">
+                                <i class="fa-solid fa-circle-xmark" id="close-2"></i>
+                            </div>
+                        </div>
+                        <div class="window-content">
+                            <div class="window-folders-files-level-2">
+                                <ul class="folders-files-list folders-files-list-3">
+                                    <li class="folder-file-list-item" data-level="">
+                                        <i class="fa-brands fa-html5"></i>
+                                        <span class="folder-file-list-item-name">HTML</span>
+                                    </li>
+                                    <li class="folder-file-list-item" data-level="">
+                                        <i class="fa-brands fa-css3-alt"></i>
+                                        <span class="folder-file-list-item-name">CSS</span>
+                                    </li>
+                                    <li class="folder-file-list-item" data-level="">
+                                        <i class="fa-brands fa-js"></i>
+                                        <span class="folder-file-list-item-name">JS</span>
+                                    </li>
+                                </ul>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam tempora ut eligendi sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam tempora ut eligendi
+                                    sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam tempora ut eligendi
+                                    sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam tempora ut eligendi
+                                    sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="window skills-file none" id="skills-file">
+                        <div class="window-header">
+                            <h3 class="window-header-name">Skills TXT</h3>
+                            <div class="window-header-close-icon">
+                                <i class="fa-solid fa-circle-xmark" id="close-2"></i>
+                            </div>
+                        </div>
+                        <div class="window-content">
+                            <div class="window-folders-files-level-2">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam tempora ut
+                                    eligendi sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam tempora ut
+                                    eligendi
+                                    sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam tempora ut
+                                    eligendi
+                                    sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam tempora ut
+                                    eligendi
+                                    sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
+                    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="window skill-folder-3 none" id="skills-pdf-d">
+                        <div class="window-header">
+                            <h3 class="window-header-name">Skills</h3>
+                            <div class="window-header-close-icon">
+                                <i class="fa-solid fa-circle-xmark" id="close-1"></i>
+                            </div>
+                        </div>
+                        <div class="window-content">
+                            <div class="window-folders-files-level-2">
+                                <ul class="folders-files-list folders-files-list-2">
+                                    <li class="folder-file-list-item" data-level="skills-pdf-d-d">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                        <span class="folder-file-list-item-name">Skills pdf-d-d</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="window skill-xls none" id="skill-xls">
+                        <div class="window-header">
+                            <h3 class="window-header-name">Skills XLS</h3>
+                            <div class="window-header-close-icon">
+                                <i class="fa-solid fa-circle-xmark" id="close-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="window-level window-level-3 ">
+                    <div class="window skills-pdf-d" id="skills-pdf-d-d">
+                        <div class="window-header">
+                            <h3 class="window-header-name">Skills PDF</h3>
+                            <div class="window-header-close-icon">
+                                <i class="fa-solid fa-circle-xmark" id="close-2"></i>
+                            </div>
+                        </div>
+                        <div class="window-content">
+                            <div class="window-folders-files-level-2">
+                                <ul class="folders-files-list">
+                                    <li class="folder-file-list-item folder-file-list-item-3">
+                                        <i class="fa-brands fa-html5"></i>
+                                        <span class="folder-file-list-item-name">HTML</span>
+                                    </li>
+                                    <li class="folder-file-list-item" data-level-three="">
+                                        <i class="fa-brands fa-css3-alt"></i>
+                                        <span class="folder-file-list-item-name">CSS</span>
+                                    </li>
+                                    <li class="folder-file-list-item" data-level-three="">
+                                        <i class="fa-brands fa-js"></i>
+                                        <span class="folder-file-list-item-name">JS</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="windows projects-preview none" id="projects" data-prev="projects">
+                <div class="window-level window window-level-1">
+                    <div class="window-header">
+                        <h3 class="window-header-name">Projects</h3>
+                        <div class="window-header-close-icon">
+                            <i class="fa-solid fa-circle-xmark" id="close-1"></i>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <div class="window-folders-files-level window-folders-files-level-3">
+                            <ul class="folders-files-list folders-files-list-1">
+                                <li class="folder-file-list-item folder-file-list-item-1" data-level="projects-img">
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                    <span class="folder-file-list-item-name">Projects File</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--<div class="window-overlay window-overlay-1"></div>-->
+                </div>
+                <div class="window-level window-level-2">
+                    <div class="window skills-pdf none" id="projects-img">
+                        <div class="window-header">
+                            <h3 class="window-header-name">Projects IMGs</h3>
+                            <div class="window-header-close-icon">
+                                <i class="fa-solid fa-circle-xmark" id="close-2"></i>
+                            </div>
+                        </div>
+                        <div class="window-content">
+                            <div class="window-folders-files-level-2">
+                                <ul class="projects-imgs-list" style="display: flex;flex-wrap: wrap;list-style: none;">
+                                    <li class="projects-imgs-list-item" style="margin:10px;width: 100px;height: 100px;"><img style="width: 100%;height: 100%; border-radius: 8px;" src="./img/avatar.png" alt="img"></li>
+                                    <li class="projects-imgs-list-item" style="margin:10px;width: 100px;height: 100px;"><img style="width: 100%;height: 100%; border-radius: 8px;" src="./img/avatar.png" alt="img"></li>
+                                    <li class="projects-imgs-list-item" style="margin:10px;width: 100px;height: 100px;"><img style="width: 100%;height: 100%; border-radius: 8px;" src="./img/avatar.png" alt="img"></li>
+                                    <li class="projects-imgs-list-item" style="margin:10px;width: 100px;height: 100px;"><img style="width: 100%;height: 100%; border-radius: 8px;" src="./img/avatar.png" alt="img"></li>
+                                    <li class="projects-imgs-list-item" style="margin:10px;width: 100px;height: 100px;"><img style="width: 100%;height: 100%; border-radius: 8px;" src="./img/avatar.png" alt="img"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="window skills-file none" id="skills-file">
+                        <div class="window-header">
+                            <h3 class="window-header-name">Skills TXT</h3>
+                            <div class="window-header-close-icon">
+                                <i class="fa-solid fa-circle-xmark" id="close-2"></i>
+                            </div>
+                        </div>
+                        <div class="window-content">
+                            <div class="window-folders-files-level-2">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam
+                                    tempora ut
+                                    eligendi sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.
+                                </p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam
+                                    tempora ut
+                                    eligendi
+                                    sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam
+                                    tempora ut
+                                    eligendi
+                                    sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam
+                                    tempora ut
+                                    eligendi
+                                    sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
+                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="window skill-folder-3 none" id="skills-pdf-d">
+                        <div class="window-header">
+                            <h3 class="window-header-name">Skills</h3>
+                            <div class="window-header-close-icon">
+                                <i class="fa-solid fa-circle-xmark" id="close-1"></i>
+                            </div>
+                        </div>
+                        <div class="window-content">
+                            <div class="window-folders-files-level-2">
+                                <ul class="folders-files-list folders-files-list-2">
+                                    <li class="folder-file-list-item" data-level="skills-pdf-d-d">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                        <span class="folder-file-list-item-name">Skills pdf-d-d</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="window skill-xls none" id="skill-xls">
+                        <div class="window-header">
+                            <h3 class="window-header-name">Skills XLS</h3>
+                            <div class="window-header-close-icon">
+                                <i class="fa-solid fa-circle-xmark" id="close-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="window-level window-level-3 ">
+                    <div class="window skills-pdf-d" id="skills-pdf-d-d">
+                        <div class="window-header">
+                            <h3 class="window-header-name">Skills PDF</h3>
+                            <div class="window-header-close-icon">
+                                <i class="fa-solid fa-circle-xmark" id="close-2"></i>
+                            </div>
+                        </div>
+                        <div class="window-content">
+                            <div class="window-folders-files-level-2">
+                                <ul class="folders-files-list">
+                                    <li class="folder-file-list-item folder-file-list-item-3">
+                                        <i class="fa-brands fa-html5"></i>
+                                        <span class="folder-file-list-item-name">HTML</span>
+                                    </li>
+                                    <li class="folder-file-list-item" data-level-three="">
+                                        <i class="fa-brands fa-css3-alt"></i>
+                                        <span class="folder-file-list-item-name">CSS</span>
+                                    </li>
+                                    <li class="folder-file-list-item" data-level-three="">
+                                        <i class="fa-brands fa-js"></i>
+                                        <span class="folder-file-list-item-name">JS</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="testimonials-preview" data-prev="testimonial">Testimonials</div>
+            <div class="contact-preview" data-prev="contact">Contact Me</div>-->
+        </div></div>
         <div class="taskbar">
             <div class="win">
                 <div class="win-icon"><i class="fa-brands fa-windows"></i></div>
@@ -186,6 +472,18 @@
         <div class="lock-icon"><a><i class="fa-solid fa-power-off"></i></a></div>
     </section>
 
+    <!-- PopUp -->
+    <div class="taskbar-popup refresh-popup none">
+        <div class="overlay">
+            <div class="popup-container">
+                <h3>Warning! You Will Lost Your Progress...,And The Website Will Shut Down</h3>
+                <div class="action">
+                    <a class="shutdown-yes" href="#shutdownsec">Yes</a>
+                    <a class="shutdown-no">No</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="js/main.js"></script>
 </body>
 </html>

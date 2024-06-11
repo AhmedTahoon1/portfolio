@@ -13,8 +13,12 @@ setHeight();
 
 window.addEventListener("resize", setHeight);
 
-/* Refresh Page and Keep Scroll Position */
+document.addEventListener("DOMContentLoaded", function(event) {
+    window.location.hash = "starter";
+});
 
+/* Refresh Page and Keep Scroll Position */
+/*
 document.addEventListener("DOMContentLoaded", function(event) { 
     var scrollpos = localStorage.getItem('scrollpos');
     if (scrollpos) window.scrollTo(0, scrollpos);
@@ -23,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 window.onbeforeunload = function(e) {
     localStorage.setItem('scrollpos', window.scrollY);
 };
-
+*/
 /* // Another Way
 function refreshPage () {
     var page_y = $( document ).scrollTop();
@@ -148,12 +152,9 @@ if (sec2.style.top == "0") {
 }
 */
 
-/*returnBtn.addEventListener("click", function () {
-    sec2.style.top = `${innerHeight}px`;
-    document.querySelector(".starter").style.top = "0px";
-    window.scrollTo(0,0)
+returnBtn.addEventListener("click", function () {
+    window.location.hash = "starter";
 });
-*/
 showPassIcon.addEventListener("click", function () {
     if (this.classList.value == "fa-solid fa-eye") {
         this.classList.value = "fa-solid fa-eye-slash";
@@ -189,6 +190,7 @@ function encrypt() {
         if(correctPass == true) {
             //sec2.style.top=`-${innerHeight}px`;
             //document.querySelector(".shutdown").style.top = "0px";
+            window.location.assign("http://127.0.0.1:5500/index.html#main")
         }else{
             document.getElementById('err').textContent = "";
             document.getElementById("wrongpass").textContent = "Wrong Password, Try Again!";
@@ -211,13 +213,10 @@ inputPass.addEventListener("input", _ => {
     inputPass.value != "" ? inputParent.classList.add("has-data") : inputParent.classList.remove("has-data");
     hoverBorder.style.width = inputParent.classList.contains("has-data") ? "100%" : "0"
 })
-/*
 guestBtn.addEventListener("click",function(){
-    starterDiv.style.top = `-${innerHeight*2}px`;
-    sec2.style.top = `-${innerHeight}px`;
-    document.querySelector(".shutdown").style.top = "0px";
+    window.location.hash="#main"
 })
-*/
+
 
 
 // Main Section 3
@@ -239,6 +238,7 @@ const shutdownNo=document.querySelector(".shutdown-no");
 function openPopUp() {
     shutdownLi.parentElement.classList.remove("show");
     taskbarPopup.classList.remove("none");
+
 }
 
 function closePopUp() {
@@ -252,6 +252,7 @@ shutdownNo.addEventListener("click",closePopUp);
 shutdownYes.addEventListener("click",function(){
     setTimeout(function(){
         document.querySelector(".shutdownsec").style.display = "none";
+        document.querySelector("#lock").style.display = "flex";
     },2000)
 })
 
@@ -265,8 +266,116 @@ turnOn.addEventListener("click",function(e){
         sections.forEach(e=>{
         e.style.display = "none";
         })
-        window.location.assign("http://127.0.0.1:5500/index.html#starter")
+        window.location.hash = "#starter";
         document.getElementById("starter").style.display = "flex";
         window.location.reload()
     },4000)
+})
+
+
+// ----------------------------------------------------
+let win1= document.querySelector(".window-level-1")
+let win2= document.querySelector(".window-level-2")
+let win3= document.querySelector(".window-level-3")
+
+document.querySelectorAll(".fa-circle-xmark").forEach(e=>{
+    e.addEventListener("click",function(){
+        let ele = e.parentElement.parentElement.parentElement;
+        ele.classList.add("none");
+        ele.parentElement.classList.add("none");
+        document.querySelector(`li[data-level="${ele.id}"]`).classList.remove("active");
+        if (ele.classList.contains("window-level-1")) {
+            document.querySelectorAll(".folders-list li.folder").forEach(f=>{
+            f.classList.remove("active")
+            })
+        }
+        /*ele.parentElement.classList.add("none");*/
+        /*
+        while (true) {
+            if (ele.classList.contains("window")) {
+                e.style.display = "none";
+            }
+            else{
+                console.log(e.classList);
+                e=e.parentElement;
+            }
+        }
+        */
+    })
+})
+
+document.querySelectorAll(".folders-list li.folder").forEach(e=>{
+        e.addEventListener("dblclick",function(){
+        document.querySelectorAll(".folders-list li.folder").forEach(f=>{
+            f.classList.remove("active")
+        })
+        e.classList.add("active");
+        
+        document.querySelectorAll(".folders-files-list-1 > li").forEach(f=>{
+            f.classList.remove("active");
+        })
+        document.querySelectorAll(".folders-files-list-2 > li").forEach(f=>{
+            f.classList.remove("active");
+        })
+        
+        if((document.querySelector(`#${e.dataset.level}`)).classList.contains("none")){
+            document.querySelectorAll(".windows").forEach(ws=>{
+                if (!(ws.classList.contains("none"))){
+                    ws.classList.add("none");
+                }
+                document.querySelectorAll(".window-level-2").forEach(w2=>{
+                    if (!(w2.classList.contains("none"))) {
+                        w2.classList.add("none")
+                    }})
+                    document.querySelectorAll(".window-level-3").forEach(w3=>{
+                    if (!(w3.classList.contains("none"))) {
+                        w3.classList.add("none")
+                    }
+                })
+            })
+            document.querySelector(`#${e.dataset.level}`).classList.remove("none")
+            document.querySelector(`#${e.dataset.level} > .window-level-1`).classList.remove("none")
+            
+        }else{
+            alert("Already Opened !!");
+        }
+        
+    })
+})
+// Just For Test
+
+// Level 1
+document.querySelectorAll(`.folders-files-list-1 > li`).forEach(e=>{
+    e.addEventListener("dblclick",function(){
+        document.querySelectorAll(".folders-files-list-1 > li").forEach(f=>{
+            f.classList.remove("active");
+        })
+        e.classList.add("active");
+        document.querySelectorAll(".folders-files-list-2 > li").forEach(f=>{
+            f.classList.remove("active");
+        })
+        document.querySelectorAll(".window-level-2 .window").forEach(w=>{
+            w.classList.add("none");
+        })
+        document.querySelectorAll(".window-level-3 .window").forEach(w=>{
+            w.classList.add("none");
+        })
+        
+        document.querySelector(`#${e.dataset.level}`).classList.remove("none");
+        document.querySelector(`#${e.dataset.level}`).parentElement.classList.remove("none");
+    })
+})
+// Level 2
+document.querySelectorAll(`.folders-files-list-2 > li`).forEach(e=>{
+    e.addEventListener("dblclick",function(){
+        document.querySelectorAll(".folders-files-list-2 > li").forEach(f=>{
+            f.classList.remove("active");
+        })
+        e.classList.add("active");
+        document.querySelectorAll(".window-level-3 .window").forEach(w=>{
+            w.classList.add("none");
+        })
+        document.querySelector(`#${e.dataset.level}`).classList.remove("none");
+        document.querySelector(`#${e.dataset.level}`).parentElement.classList.remove("none");
+    })
 })

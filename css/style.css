@@ -29,9 +29,9 @@ body{
     overflow-x: hidden;
     background-color: #47777b;
 }
-section{min-width: 100%;background-size: cover;}
+section{height: 100vh;min-width: 100%;background-size: cover;}
 a{text-decoration: none;}
-.none{display: none;}
+
 /* --------------------------- */
 /* Starter Page */
 .starter{
@@ -44,6 +44,7 @@ a{text-decoration: none;}
     transition: all 1.5s;
     cursor: pointer;
     z-index: 1;
+    
     /*display: none;*/
 }
 .starter-header{position: relative;flex-basis: 200px;}
@@ -327,18 +328,23 @@ section.main{
     background-size: cover;
     display: grid; /* Try Using Grid */
     /*taskbar:ts,folders-container:fc,folders-preview:fp*/
-    grid-template-areas: 
-    ". . . . . . . . . . . ."
-    "fc . fp fp fp fp fp fp fp fp fp fp"
-    "fc . fp fp fp fp fp fp fp fp fp fp"
-    "fc . fp fp fp fp fp fp fp fp fp fp"
-    "fc . fp fp fp fp fp fp fp fp fp fp"
-    "fc . fp fp fp fp fp fp fp fp fp fp"
-    "fc . fp fp fp fp fp fp fp fp fp fp"
-    "ts ts ts ts ts ts ts ts ts ts ts ts";
-    grid-template-columns: max-content;
+    grid-template-areas:
+        "fc . . . . . . . . . . ."
+        "fc . fp fp fp fp fp fp fp fp fp ."
+        "fc . fp fp fp fp fp fp fp fp fp ."
+        "fc . fp fp fp fp fp fp fp fp fp ."
+        "fc . fp fp fp fp fp fp fp fp fp ."
+        "fc . fp fp fp fp fp fp fp fp fp ."
+        "fc . fp fp fp fp fp fp fp fp fp ."
+        "fc . fp fp fp fp fp fp fp fp fp ."
+        "fc . fp fp fp fp fp fp fp fp fp ."
+        "fc . fp fp fp fp fp fp fp fp fp ."
+        "fc . . . . . . . . . . ."
+        "ts ts ts ts ts ts ts ts ts ts ts ts";
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
     gap: 10px;
-    max-height: 100vh;
+    height: 100vh;
     overflow: hidden;
     position: relative;
 }
@@ -379,77 +385,213 @@ ul.folders-list li:hover span {
 ul.folders-list li.active span {
     color: #f5f5f5;
 }
+/* Preview */
 .folder-preview{
     grid-area: fp;
-    padding: 80px 15px 0 0;
+    margin: 40px 15px 0;
+}
+.windows{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.window{
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    background-color: #9ecbd0;
+    padding-inline: 15px;
+    box-shadow: 1px 1px 5px 1px #333333AA;
+    border-radius: 10px 10px 8px 8px;
+    transition: all 0.3s;
+}
+.window-level-1 {
+    position: absolute;
+    z-index: 10;
+}
+.window-level-2{
+    position: absolute;
+    top: -30px;
+    left: 250px;
+    width: 92%;
+    height: 92%;
+    z-index: 20;
+}
+.window-level-3{
+    position: absolute;
+    top: 150px;
+    left: -10px;
+    width: 88%;
+    height: 88%;
+    z-index: 30;
+}
+.window-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: -15px;
+    padding: 15px;
+    border-bottom: 2px solid #f5f5f5;
+    background-color: #316867;
+    box-shadow: 0px 1px 5px -2px #333333AA;
+    border-radius: 8px 8px 0px 0px;
+    cursor: move;
 }
 
-.taskbar{
+.window-header-name {
+    padding: 5px 30px;
+    font-size: 20px;
+    color: #f5f5f5;
+    margin: 0;
+    background-color: #333;
+    border: 2px solid #f5f5f5;
+}
+/*
+.window-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+.window-overlay-1{
+    z-index: 9;
+}
+.window-overlay-2 {
+    z-index: 19;
+}
+.window-overlay-3 {
+    z-index: 29;
+}
+*/
+/* Folders Preview*/
+
+/* Skills Preview */
+.skills-preview{
+    width: 100%;
+    height: 100%;
+}
+
+
+.window-header-close-icon{
+    font-size: 24px;
+    color: #f5f5f5;
+    cursor: pointer;
+}
+.window-content{
+    flex:1;
+    overflow-y: auto;
+    margin-right: -15px;
+}
+.folders-files-list{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.folder-file-list-item{
+    text-align: center;
+    cursor: pointer;
+    margin: 10px;
+}
+.folder-file-list-item i{
+    font-size: 40px;
+    color: #333;
+}
+.folder-file-list-item.active i {
+    color: #f5f5f5;
+}
+.folder-file-list-item-name{
+    display: block;
+    margin: 10px 0;
+    color: #333;
+}
+
+
+
+/* Taskbar Style */
+.taskbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     grid-area: ts;
     background-color: #36716c;
-    padding: 10px 15px;
+    padding: 0 15px;
+    z-index: 100;
 }
-.win{position: relative;}
+
+.win {
+    position: relative;
+}
+
 .win .win-icon {
     cursor: pointer;
 }
 
-.win .win-icon i{
-    font-size: 50px;
+.win .win-icon i {
+    font-size: 45px;
     transform: perspective(100px) rotateY(145deg) scale(1.2);
     color: #F5F5F5;
 }
-.win .win-list{
+
+.win .win-list {
     position: absolute;
     list-style: none;
     left: 0;
-    bottom: 44.5px;/*top: -169px;*/
+    bottom: 29px;
     z-index: 10;
     background-color: darkgray;
     color: #333;
-    padding: 5px 0 0; 
+    padding: 5px 0 0;
     text-align: start;
     width: 200px;
     font-size: 20px;
-    display:none;
+    display: none;
     transition: all 0.3s ease-in-out;
 }
-.win .win-list.show{
+
+.win .win-list.show {
     display: block;
 }
 
-.win .win-list li{
+.win .win-list li {
     cursor: pointer;
     border-bottom: 1px solid #333;
     padding: 10px 15px;
     transition: color 0.2s ease;
 }
+
 .win .win-list li:hover {
     color: #f5f5f5;
 }
+
 .win .win-list li:last-of-type {
     border-bottom: none;
 }
-.win .win-list li span{
+
+.win .win-list li span {
     margin-left: 15px;
 }
-.taskbar .status{
+
+.taskbar .status {
     width: 200px;
 }
-.taskbar .status .footer-icons{
+
+.taskbar .status .footer-icons {
     font-size: 24px;
 }
-.taskbar-popup{
+
+.taskbar-popup {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
 }
-.taskbar-popup .overlay{
+
+.taskbar-popup .overlay {
     background-color: #33333342;
     width: 100%;
     height: 100%;
@@ -460,18 +602,21 @@ ul.folders-list li.active span {
     align-items: center;
     cursor: pointer;
 }
-.taskbar-popup .overlay .popup-container{
+
+.taskbar-popup .overlay .popup-container {
     padding: 20px;
     background-color: darkgray;
     color: #333;
     box-shadow: 3px 3px 5px 2px #3334;
     border: 5px solid #333a;
 }
-.popup-container .action{
+
+.popup-container .action {
     margin: 20px 0;
     padding: 20px 0 0;
 }
-.popup-container .action a{
+
+.popup-container .action a {
     padding: 5px 20px;
     font-size: 20px;
     background-color: #47777b;
@@ -479,9 +624,15 @@ ul.folders-list li.active span {
     margin: 0 30px;
     cursor: pointer;
 }
-.popup-container .action a:hover{
+
+.popup-container .action a:hover {
     color: #f5f5f5;
 }
+/*
+######################################
+######################################
+######################################
+*/
 /* ShutDown Section 4 */
 .shutdownsec{
     height: 100vh;
@@ -526,9 +677,18 @@ ul.folders-list li.active span {
 /* Lock Section */
 .lock{
     background-color: #000;
-    display: flex;
+    /*display: flex;*/
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    display: none;
 }
 .lock-icon a {
     color: #333;
@@ -542,3 +702,7 @@ ul.folders-list li.active span {
     color: #FFF;
 }
 
+/**/
+.none {
+    display: none;
+}
