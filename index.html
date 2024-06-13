@@ -63,7 +63,10 @@
                     <label for="input-1">Enter The Password:</label>
                     <span class="border borderL"></span>
                     <span class="showpass" id="showpass"><i class="fa-solid fa-eye" id="showpassicon"></i></span>
-                    <span class="help"></span>
+                    <span class="help">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span class="help-text none">Try 123</span>
+                    </span>
                     <input type="hidden" name="hide" id="hide" />
             </div>
             <div class="validatediv" style="position: relative;font-size: 16px;">
@@ -92,43 +95,72 @@
                     <i class="fa-solid fa-folder-closed"></i>
                     <span class="folder-name">Projects</span>
                 </li>
-                <li class="folder" data-level="testimonial">
+                <li class="folder" data-level="testimonials">
                     <i class="fa-solid fa-folder-closed"></i>
                     <span class="folder-name">Testimonials</span>
-                </li>
-                <li class="folder" data-level="contact">
-                    <i class="fa-solid fa-folder-closed"></i>
-                    <span class="folder-name">Contact</span>
                 </li>
             </ul>
         </div>
         <div class="folder-preview">
-            <!--<div class="default-preview" id="default" data-prev="default">Default</div>
-            <div class="about-preview" data-prev="about">
-                <div class="window">
-                    <div class="header">
-                        <h3 class="window-name">About</h3>
+            <!-- About Window -->
+            <div class="windows about-preview none" id="about" data-prev="about">
+                <div class="window-level window window-level-1 none">
+                    <div class="window-header">
+                        <h3 class="window-header-name">About Folder</h3>
+                        <div class="window-header-action"></div>
                         <div class="window-header-close-icon">
-                            <i class="fa-solid fa-circle-xmark"></i>
+                            <i class="fa-solid fa-circle-xmark" id="close-1"></i>
                         </div>
                     </div>
                     <div class="window-content">
                         <div class="window-folders-files-level-1">
-
+                            <ul class="folders-files-list folders-files-list-1">
+                                <li class="folder-file-list-item" data-level="about-file">
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                    <span class="folder-file-list-item-name">My Info</span>
+                                </li>
+                                <li class="folder-file-list-item" data-level="about-cv">
+                                    <i class="fa-solid fa-file"></i>
+                                    <span class="folder-file-list-item-name"> CV </span>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="window-folders-files-level-2">
-                            
-                        </div>
-                        <div class="window-folders-files-level-3">
-                            
+                        <div class="window-level window-level-2">
+                            <div class="window about-file none" id="about-file">
+                                <div class="window-header">
+                                    <h3 class="window-header-name">My Information</h3>
+                                    <div class="window-header-action"></div>
+                                    <div class="window-header-close-icon">
+                                        <i class="fa-solid fa-circle-xmark" id="close-2"></i>
+                                    </div>
+                                </div>
+                                <div class="window-content">
+                                    <iframe class="frame window-folders-files-level-2" src="pages/pages.html" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                            <div class="window about-cv none" id="about-cv">
+                                <div class="window-header">
+                                    <h3 class="window-header-name">My CV</h3>
+                                    <div class="window-header-close-icon">
+                                        <i class="fa-solid fa-circle-xmark" id="close-2"></i>
+                                    </div>
+                                </div>
+                                <div class="window-content">
+                                    <iframe class="frame window-folders-files-level-2" src="pages/pages.html" frameborder="0">
+                                    </iframe>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!--<div class="window-overlay window-overlay-1"></div>-->
                 </div>
-            </div>-->
+            </div>
+            <!-- Skills Window -->
             <div class="windows skills-preview none" id="skills" data-prev="skills">
                 <div class="window-level window window-level-1 none">
                     <div class="window-header">
                         <h3 class="window-header-name">Skills</h3>
+                        <div class="window-header-action"></div>
                         <div class="window-header-close-icon">
                             <i class="fa-solid fa-circle-xmark" id="close-1"></i>
                         </div>
@@ -196,20 +228,8 @@
                             </div>
                         </div>
                         <div class="window-content">
-                            <div class="window-folders-files-level-2">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam tempora ut
-                                    eligendi sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam tempora ut
-                                    eligendi
-                                    sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam tempora ut
-                                    eligendi
-                                    sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ipsa sapiente neque magnam tempora ut
-                                    eligendi
-                                    sunt odit numquam, ratione dicta animi illo, quo et expedita unde autem esse temporibus.</p>
-                    
-                            </div>
+                            <iframe class="frame window-folders-files-level-2" src="pages/pages.html" frameborder="0">
+                            </iframe>
                         </div>
                     </div>
                     <div class="window skill-folder-3 none" id="skills-pdf-d">
@@ -268,6 +288,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Projects Window -->
             <div class="windows projects-preview none" id="projects" data-prev="projects">
                 <div class="window-level window window-level-1">
                     <div class="window-header">
@@ -393,8 +414,22 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="testimonials-preview" data-prev="testimonial">Testimonials</div>
-            <div class="contact-preview" data-prev="contact">Contact Me</div>-->
+            <!-- Testimonials Window -->
+            <div class="windows testimonials-preview none" id="testimonials" data-prev="testimonials">
+                <div class="window-level window window-level-1 none">
+                    <div class="window-header">
+                        <h3 class="window-header-name">Testimonials</h3>
+                        <div class="window-header-close-icon">
+                            <i class="fa-solid fa-circle-xmark" id="close-1"></i>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <div class="window-folders-files-level-1 ban">
+                            <i class="fa-solid fa-ban"></i>
+                        </div>
+                    </div>
+            </div>
+            
         </div></div>
         <div class="taskbar">
             <div class="win">
@@ -462,13 +497,13 @@
         -->
     </section>
     <!-- ShutDown Section -->
-    <section class="section4 shutdownsec hide" id="shutdownsec">
+    <section class="section4 shutdownsec" id="shutdownsec">
         <h2 class="shutdown-message">Thank You For Listening</h2>
         <div class="shutdown-spinner"></div>
         <div class="shutdown-text">Shutting Down...</div>
     </section>
     <!-- Lock Screen -->
-    <section class="section5 lock hide" id="lock">
+    <section class="section5 lock none" id="lock">
         <div class="lock-icon"><a><i class="fa-solid fa-power-off"></i></a></div>
     </section>
 
@@ -484,6 +519,13 @@
             </div>
         </div>
     </div>
+
+    <!-- Reload Overlay -->
+    <div class="reload-overlay none">
+        <div class="shutdown-spinner"></div>
+    </div>
+    
     <script src="js/main.js"></script>
+    <script src="js/iframe.js"></script>
 </body>
 </html>
